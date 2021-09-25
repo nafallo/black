@@ -100,7 +100,7 @@ def _initialize_black_env(upgrade=False):
     sys.path.insert(0, virtualenv_site_packages)
   return True
 
-if _initialize_black_env():
+if vim.eval("g:black_use_system") or _initialize_black_env():
   import black
   import time
 
