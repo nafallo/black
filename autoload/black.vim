@@ -181,7 +181,10 @@ def Black(**kwargs):
 
 def get_configs():
   filename = vim.eval("@%")
-  path_pyproject_toml = black.find_pyproject_toml((filename,))
+  try:
+    path_pyproject_toml = black.find_pyproject_toml((filename,))
+  except AttributeError:
+    path_pyproject_toml = None
   if path_pyproject_toml:
     toml_config = black.parse_pyproject_toml(path_pyproject_toml)
   else:
